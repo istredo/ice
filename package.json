@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prisma/client": "^5.18.0",
     "@radix-ui/react-checkbox": "^1.1.1",
     "@radix-ui/react-dialog": "^1.1.1",
     "@radix-ui/react-select": "^2.1.1",
@@ -18,11 +19,14 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.427.0",
     "next": "14.2.5",
+    "prisma": "^5.18.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-use": "^17.5.1",
     "tailwind-merge": "^2.5.1",
     "tailwindcss-animate": "^1.0.7",
-    "vaul": "^0.9.1"
+    "vaul": "^0.9.1",
+    "zustand": "^4.5.4"
   },
   "devDependencies": {
     "@types/node": "^20",
