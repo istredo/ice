@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 import { Title } from './title';
@@ -5,13 +7,19 @@ import { FilterCheckbox } from './filter-checkbox';
 import { Input } from '../ui/input';
 import { RangeSlider } from './range-slider';
 import { CheckboxFiltersGroup } from './checkbox-filters-group';
+import { useIngredients } from '@/hooks/use-ingredients';
 
 
 interface Props {
 	className?: string;
 }
 
+
 export const Filters: React.FC<Props> = ({ className }) => {
+
+	const { ingredients } = useIngredients();
+	const items = ingredients.map((item) => ({ value: String(item.id), text: item.name }));
+	console.log(items)
 	return (
 		<div className={cn(className)}>
 			<Title text='Настройки' size='sm' className='mb-5 font-bold' />
@@ -51,70 +59,8 @@ export const Filters: React.FC<Props> = ({ className }) => {
 				title='Наполнители'
 				className='mt-5'
 				limit={4}
-				defaultItems={[
-					{
-						text: 'Вишня',
-						value: '6',
-					},
-					{
-						text: 'Смородина',
-						value: '7',
-					},
-					{
-						text: 'Апельсин',
-						value: '3',
-					},
-					{
-						text: 'Клубника',
-						value: '4',
-					},
-					{
-						text: 'Манго',
-						value: '5',
-					}
-				]}
-				items={[
-					{
-						text: 'Вишня',
-						value: '6',
-					},
-					{
-						text: 'Смородина',
-						value: '7',
-					},
-					{
-						text: 'Апельсин',
-						value: '3',
-					},
-					{
-						text: 'Клубника',
-						value: '4',
-					},
-					{
-						text: 'Манго',
-						value: '5',
-					},
-					{
-						text: 'Персик',
-						value: '8',
-					},
-					{
-						text: 'Киви',
-						value: '9',
-					},
-					{
-						text: 'Шоколад',
-						value: '10',
-					},
-					{
-						text: 'Фисташка',
-						value: '11',
-					},
-					{
-						text: 'Бабл гам',
-						value: '12',
-					}
-				]}
+				defaultItems={items.slice(0, 3)}
+				items={items}
 			/>
 		</div>
 	);
