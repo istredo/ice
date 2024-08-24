@@ -13,12 +13,24 @@ import { useIngredients } from '@/hooks/use-ingredients';
 interface Props {
 	className?: string;
 }
+interface Price {
+	priceFrom: number;
+	priceTo: number;
+}
 
 
 export const Filters: React.FC<Props> = ({ className }) => {
 
 	const { ingredients, loading, selectedIds, onAddId } = useIngredients();
 	const items = ingredients.map((item) => ({ value: String(item.id), text: item.name }));
+	const [prices, setPrice] = React.useState<Price>({ priceFrom: 0, priceTo: 4000 });
+
+	const updatePrice = (name: keyof Price, value: number) => {
+		setPrice({
+			...prices,
+			[name]: value
+		})
+	}
 	return (
 		<div className={cn(className)}>
 			<Title text='Настройки' size='sm' className='mb-5 font-bold' />
@@ -36,21 +48,25 @@ export const Filters: React.FC<Props> = ({ className }) => {
 						placeholder="0"
 						min={0}
 						max={4000}
-						defaultValue={0}
+						value={String(prices.priceFrom)}
+						onChange={(e) => updatePrice('priceFrom', Number(e.target.value))}
 					/>
 					<Input
 						type="number"
 						min={100}
 						max={4000}
 						placeholder="4000"
+						value={String(prices.priceTo)}
+						onChange={(e) => updatePrice('priceTo', Number(e.target.value))}
 					/>
 				</div>
 
 				<RangeSlider
 					min={0}
 					max={4000}
-					step={10}
-					value={[0, 4000]}
+					step={100}
+					value={[prices.priceFrom, prices.priceTo]}
+					onValueChange={([priceFrom, priceTo]) => setPrice({ priceFrom, priceTo })}
 				/>
 			</div>
 
