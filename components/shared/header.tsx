@@ -4,6 +4,8 @@ import { Container } from './container';
 import Image from 'next/image';
 import { Button } from '../ui/button';
 import { User } from 'lucide-react';
+import { SearchInput } from './search-input';
+import Link from 'next/link';
 
 
 interface Props {
@@ -17,10 +19,14 @@ export const Header: React.FC<Props> = ({ className }) => {
 
 				<div className='flex items-center gap-4'>
 					<Image src='/pizza.ico' alt='Logo' width={35} height={35} />
-					<div>
+					<Link href='/'>
 						<h1 className='text-2xl uppercase font-black'>Морозко</h1>
 						<p className='text-sm text-gray-400 leading-3'>Невероятно вкусно!</p>
-					</div>
+					</Link>
+				</div>
+
+				<div className="mx-10 flex-1">
+					<SearchInput />
 				</div>
 
 				<div>
