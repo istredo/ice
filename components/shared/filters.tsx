@@ -17,9 +17,8 @@ interface Props {
 
 export const Filters: React.FC<Props> = ({ className }) => {
 
-	const { ingredients } = useIngredients();
+	const { ingredients, loading } = useIngredients();
 	const items = ingredients.map((item) => ({ value: String(item.id), text: item.name }));
-	console.log(items)
 	return (
 		<div className={cn(className)}>
 			<Title text='Настройки' size='sm' className='mb-5 font-bold' />
@@ -36,31 +35,32 @@ export const Filters: React.FC<Props> = ({ className }) => {
 						type="number"
 						placeholder="0"
 						min={0}
-						max={2000}
+						max={4000}
 						defaultValue={0}
 					/>
 					<Input
 						type="number"
 						min={100}
-						max={2000}
-						placeholder="2000"
+						max={4000}
+						placeholder="4000"
 					/>
 				</div>
 
 				<RangeSlider
 					min={0}
-					max={2000}
+					max={4000}
 					step={10}
-					value={[0, 2000]}
+					value={[0, 4000]}
 				/>
 			</div>
 
 			<CheckboxFiltersGroup
 				title='Наполнители'
 				className='mt-5'
-				limit={4}
+				limit={3}
 				defaultItems={items.slice(0, 3)}
 				items={items}
+				loading={loading}
 			/>
 		</div>
 	);

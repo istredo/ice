@@ -1,19 +1,21 @@
 import { Api } from "@/services/api-client"
 import { Ingredient } from "@prisma/client"
-import React, { useState } from "react"
+import React from "react"
 
 export const useIngredients = () => {
-	const [ingredients, setIngredients] = useState<Ingredient[]>([]);
-
+	const [ingredients, setIngredients] = React.useState<Ingredient[]>([]);
+	const [loading, setLoading] = React.useState(false);
 
 	React.useEffect(() => {
 		async function fetchIngredients() {
 			try {
+				setLoading(true);
 				const ingredients = await Api.ingredients.getAll();
-				console.log(ingredients)
 				setIngredients(ingredients);
 			} catch (error) {
 				console.log(error);
+			} finally {
+				setLoading(false);
 			}
 		}
 
@@ -21,6 +23,7 @@ export const useIngredients = () => {
 	}, []);
 
 	return {
-		ingredients
+		ingredients,
+		loading
 	};
 };

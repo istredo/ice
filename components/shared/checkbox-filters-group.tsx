@@ -2,6 +2,7 @@
 import React from 'react';
 import { FilterCheckbox, FilterCheckboxProps } from './filter-checkbox'
 import { Input } from '../ui/input';
+import { Skeleton } from '../ui/skeleton';
 
 
 type Item = FilterCheckboxProps;
@@ -14,17 +15,19 @@ interface Props {
 	defaultValue?: string;
 	onChange?: (values: string[]) => void;
 	className?: string;
+	loading?: boolean;
 }
 
 export const CheckboxFiltersGroup: React.FC<Props> = ({
 	title,
 	items,
 	defaultItems,
-	limit = 5,
+	limit = 3,
 	searchInputPlaceholder = 'Поиск...',
 	onChange,
 	defaultValue,
 	className,
+	loading
 
 }) => {
 	const [showAll, setShowAll] = React.useState(false)
@@ -33,6 +36,18 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 
 	const onChangeSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setSearchValue(e.target.value)
+	}
+
+	if (loading) {
+		return (
+			<div className={className}>
+				<p className="font-bold mb-3">{title}</p>
+				{
+					...Array(limit).fill(0).map((_, index) => <Skeleton className='h-6 mb-4 rounded-[8px]' key={index} />)
+				}
+				<Skeleton className='w-28 h-6 mb-4 rounded-[8px]' />
+			</div>
+		)
 	}
 	return (
 		<div className={className}>
