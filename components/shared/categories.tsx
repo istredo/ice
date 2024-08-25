@@ -8,10 +8,10 @@ interface Props {
 }
 
 const cats = [
-	{ id: 0, name: "Мороженое" },
-	{ id: 1, name: "Торт-мороженое" },
-	{ id: 2, name: "Мягкое" },
-	{ id: 3, name: "Фруктовый лёд" }
+	{ id: 1, name: "Мороженое" },
+	{ id: 2, name: "Торт-мороженое" },
+	{ id: 3, name: "Коктейли" },
+	{ id: 4, name: "Напитки" }
 ]
 
 export const Categories: React.FC<Props> = ({ className }) => {

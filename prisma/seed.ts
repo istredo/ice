@@ -14,7 +14,7 @@ const generateProductItem = ({
 }: {
 	productId: number;
 	sugar?: boolean;
-	size?: 250 | 500 | 1000;
+	size?: 250 | 500 | 1000 | 2500;
 }) => {
 	return {
 		productId,
@@ -59,7 +59,7 @@ async function up() {
 	const ice1 = await prisma.product.create({
 		data: {
 			name: 'Сливочный пломбир',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/e0d/cfk5kutjupdl6of250ncksgbsk3ztt3sr.jpg',
+			imageUrl: 'https://br-delivery.ru/upload/iblock/f6b/8wtppspnf102ko6i2aqqxt2j6wpn71j2.jpg',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(0, 3),
@@ -68,8 +68,8 @@ async function up() {
 	});
 	const ice2 = await prisma.product.create({
 		data: {
-			name: 'Вишневое удовольствие',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/1c7/3y1kvrdm1y4oxtwotl8cxvnvgh82q2506.jpg',
+			name: 'Черничное удовольствие',
+			imageUrl: 'https://br-delivery.ru/upload/iblock/efd/tqjdmlpghgim59qytclbbbif80m6pb37.jpg',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(3, 10),
@@ -83,6 +83,46 @@ async function up() {
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(10, 33),
+			},
+		},
+	});
+	const cake1 = await prisma.product.create({
+		data: {
+			name: 'Love',
+			imageUrl: 'https://brand-ice.ru/upload/iblock/fc8/fc884aa5791f4410ad7f1b52963b3bf4.jpg',
+			categoryId: 2,
+			ingredients: {
+				connect: _ingredients.slice(2, 5),
+			},
+		},
+	});
+	const cake2 = await prisma.product.create({
+		data: {
+			name: 'Мишка',
+			imageUrl: 'https://br-delivery.ru/upload/iblock/cb5/rd3a0dvhumuzczak7ghp23c35n03w91s.jpg',
+			categoryId: 2,
+			ingredients: {
+				connect: _ingredients.slice(3, 8),
+			},
+		},
+	});
+	const cake3 = await prisma.product.create({
+		data: {
+			name: 'Сыр',
+			imageUrl: 'https://br-delivery.ru/upload/iblock/e64/g7esk7890dhcje51buvqqs4zfz7ccfdk.jpg',
+			categoryId: 2,
+			ingredients: {
+				connect: _ingredients.slice(1, 4),
+			},
+		},
+	});
+	const cake4 = await prisma.product.create({
+		data: {
+			name: 'Праздничный',
+			imageUrl: 'https://br-delivery.ru/upload/iblock/85f/vy3hz6rfw0201ua95nmntbegapaktzxe.png',
+			categoryId: 2,
+			ingredients: {
+				connect: _ingredients.slice(5, 10),
 			},
 		},
 	});
@@ -106,6 +146,30 @@ async function up() {
 			generateProductItem({ productId: ice3.id, sugar: true, size: 250 }),
 			generateProductItem({ productId: ice3.id, sugar: false, size: 500 }),
 			generateProductItem({ productId: ice3.id, sugar: false, size: 1000 }),
+
+
+			// Торт "Love"
+			generateProductItem({ productId: cake1.id, sugar: true, size: 2500 }),
+			generateProductItem({ productId: cake1.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake1.id, sugar: false, size: 2500 }),
+
+			// Торт "Мишка"
+			generateProductItem({ productId: cake2.id, sugar: true, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: true, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: true, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: false, size: 2500 }),
+
+			// Торт "Сыр"
+			generateProductItem({ productId: cake3.id, sugar: true, size: 2500 }),
+			generateProductItem({ productId: cake3.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake3.id, sugar: false, size: 2500 }),
+
+			// Торт "Праздничный"
+			generateProductItem({ productId: cake4.id, sugar: true, size: 2500 }),
+			generateProductItem({ productId: cake4.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake4.id, sugar: false, size: 2500 }),
 
 			// Остальные продукты
 			generateProductItem({ productId: 1 }),
@@ -141,7 +205,7 @@ async function up() {
 			cartId: 1,
 			quantity: 2,
 			ingredients: {
-				connect: [{ id: 1 }, { id: 2 }, { id: 3  }],
+				connect: [{ id: 1 }, { id: 2 }, { id: 3 }],
 			},
 		},
 	});
