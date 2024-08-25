@@ -28,35 +28,40 @@ export default function Home() {
 									name: "Фисташка",
 									imageUrl: 'https://br-delivery.ru/upload/iblock/1e8/b2gw05otqw3ghfw5u53kyqvfsej0v0xn.jpg',
 									price: 1549,
-									items: [{ price: 1549 }]
+									items: [{ price: 1549 }],
+									size: 1000,
 								},
 								{
 									id: 2,
 									name: "Шоколадное",
 									imageUrl: 'https://br-delivery.ru/upload/iblock/ebc/nbqa7p66rv1j6674blwx31hkhsek60yr.jpg',
 									price: 1549,
-									items: [{ price: 1049 }]
+									items: [{ price: 1049 }],
+									size: 1000,
 								},
 								{
 									id: 3,
 									name: "Бабл гам",
 									imageUrl: 'https://br-delivery.ru/upload/iblock/a41/ajs9niofoav2q4ijm2qar2jnrp0342mt.jpg',
 									price: 1549,
-									items: [{ price: 3549 }]
+									items: [{ price: 3549 }],
+									size: 1000,
 								},
 								{
 									id: 4,
 									name: "Вишня",
 									imageUrl: 'https://br-delivery.ru/upload/iblock/1c7/3y1kvrdm1y4oxtwotl8cxvnvgh82q206.jpg',
 									price: 1549,
-									items: [{ price: 2549 }]
+									items: [{ price: 2549 }],
+									size: 1000,
 								},
 								{
 									id: 5,
 									name: "Ванильное",
 									imageUrl: 'https://br-delivery.ru/upload/iblock/e0d/cfk5kutjupdl6of20ncksgbsk3ztt3sr.jpg',
 									price: 1549,
-									items: [{ price: 1549 }]
+									items: [{ price: 1549 }],
+									size: 1000,
 								},
 							]} categoryId={0} />
 							<ProductsList title={"Торт-мороженое"} items={[
