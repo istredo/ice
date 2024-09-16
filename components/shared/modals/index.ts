@@ -1,0 +1,1 @@
+export { ModalProductPage } from './modal-product-page'

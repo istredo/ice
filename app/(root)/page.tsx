@@ -44,8 +44,6 @@ export default async function Home() {
 					</div>
 				</div>
 			</Container>
-			<div style={{ height: '1000px' }}></div>
-
 		</>
 	);
 }

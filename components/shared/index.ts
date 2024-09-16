@@ -13,3 +13,4 @@ export { ProductsList } from './products-list'
 export { SearchInput } from './search-input'
 export { ProductImage } from './product-image'
 export { Variants } from './variants'
+export * from './modals';
