@@ -13,4 +13,6 @@ export { ProductsList } from './products-list'
 export { SearchInput } from './search-input'
 export { ProductImage } from './product-image'
 export { Variants } from './variants'
-export * from './modals';
+export { ProductForm } from './product-form'
+export { IceForm } from './ice-form'
+export * from '../modals';

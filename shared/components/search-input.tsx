@@ -5,8 +5,8 @@ import { Search } from 'lucide-react'
 import { Props } from 'next/script'
 import { useClickAway, useDebounce } from 'react-use'
 import Link from 'next/link'
-import { Api } from '@/services/api-client'
-import { cn } from '@/lib/utils'
+import { Api } from '@/shared/services/api-client'
+import { cn } from '@/shared/lib/utils'
 import { Product } from '@prisma/client'
 
 export const SearchInput: React.FC<Props> = ({ className }) => {
