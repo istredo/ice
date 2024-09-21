@@ -4,9 +4,9 @@ import { useRouter } from 'next/navigation';
 
 import { cn } from '@/shared/lib/utils';
 import { Dialog, DialogContent } from '@/shared/ui/dialog';
-import { ProductForm } from '../components/product-form';
+import { ProductForm } from '../product-form';
 import { ProductWithRelations } from '@/@types/prisma';
-import { IceForm } from '../components/ice-form';
+import { IceForm } from '../ice-form';
 
 
 interface Props {
@@ -24,7 +24,8 @@ export const ModalProductPage: React.FC<Props> = ({ product, className }) => {
 					className,
 				)}>
 				{
-					isIce ? <IceForm imageUrl={product.imageUrl} name={product.name} ingredients={[]} /> : <ProductForm imageUrl={product.imageUrl} name={product.name} />
+					isIce ? <IceForm imageUrl={product.imageUrl} name={product.name} ingredients={product.ingredients} />
+						: <ProductForm imageUrl={product.imageUrl} name={product.name} />
 				}
 			</DialogContent>
 		</Dialog>

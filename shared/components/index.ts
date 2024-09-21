@@ -15,4 +15,5 @@ export { ProductImage } from './product-image'
 export { Variants } from './variants'
 export { ProductForm } from './product-form'
 export { IceForm } from './ice-form'
-export * from '../modals';
+export { IngridientItem } from './ingridient-item'
+export * from './modals';
