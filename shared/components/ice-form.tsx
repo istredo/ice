@@ -1,22 +1,25 @@
+'use client';
 import React from 'react';
-import { useSet } from 'react-use';
 import { Ingredient, ProductItem } from '@prisma/client';
 import { Title } from './title';
 import { Button } from '../ui/button';
 import { cn } from '@/shared/lib/utils';
 import { ProductImage } from './product-image';
 import { Variants } from './variants';
-import { IceSize, iceSizes, Sugar, sugarTypes } from '../const/ice';
+import { IceSize, mapIceSizes, mapSugar, Sugar, sugarTypes } from '../const/ice';
 import { IngridientItem } from './ingridient-item';
+import { calcTotalPrice } from '../lib';
+import { useProductOptions } from '../hooks';
+
 
 
 interface Props {
 	imageUrl: string;
 	name: string;
 	ingredients: Ingredient[];
-	items?: ProductItem[];
+	items: ProductItem[];
 	loading?: boolean;
-	onSubmit?: (itemId: number, ingredients: number[]) => void;
+	onSubmit?: VoidFunction
 	className?: string;
 }
 
@@ -29,11 +32,30 @@ export const IceForm: React.FC<Props> = ({
 	onSubmit,
 	className,
 }) => {
-	const textDetaills = 'loremipsum'
-	const totalPrice = 322
-	const [size, setSize] = React.useState<IceSize>(500)
-	const [sugar, setSugar] = React.useState<Sugar>(1)
-	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]))
+
+	const { size,
+		sugar,
+		selectedIngredients,
+		availableSizes,
+		setSize,
+		setSugar,
+		addIngredient } = useProductOptions(items)
+
+	const textDetaills = `${mapIceSizes[size]}, ${selectedIngredients.size ? `${mapSugar[sugar].toLowerCase()}, с наполнителями` : `${mapSugar[sugar].toLowerCase()}`}`
+
+	const totalPrice = calcTotalPrice(
+		items, ingredients, size, sugar, selectedIngredients
+	)
+
+	const handleClickAdd = () => {
+		onSubmit?.()
+		console.log({
+			size,
+			sugar,
+			ingredients: selectedIngredients
+		})
+	}
+
 	return (
 
 		<div className={cn(className, 'flex flex-1 justify-between')}>
@@ -42,7 +64,7 @@ export const IceForm: React.FC<Props> = ({
 				<Title text={name} size="md" className="font-extrabold mb-1" />
 				<p className="text-gray-400">{textDetaills}</p>
 				<div className='flex flex-col gap-4 mt-7'>
-					<Variants items={iceSizes} value={String(size)} onClick={value => setSize(Number(value) as IceSize)} />
+					<Variants items={availableSizes} value={String(size)} onClick={value => setSize(Number(value) as IceSize)} />
 					<Variants items={sugarTypes} value={String(sugar)} onClick={value => setSugar(Number(value) as Sugar)} />
 				</div>
 				<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
@@ -62,6 +84,7 @@ export const IceForm: React.FC<Props> = ({
 					</div>
 				</div>
 				<Button
+					onClick={handleClickAdd}
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
 					Добавить в корзину за {totalPrice} ₽
 				</Button>

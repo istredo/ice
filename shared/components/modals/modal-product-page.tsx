@@ -24,7 +24,7 @@ export const ModalProductPage: React.FC<Props> = ({ product, className }) => {
 					className,
 				)}>
 				{
-					isIce ? <IceForm imageUrl={product.imageUrl} name={product.name} ingredients={product.ingredients} />
+					isIce ? <IceForm imageUrl={product.imageUrl} name={product.name} ingredients={product.ingredients} items={product.items} />
 						: <ProductForm imageUrl={product.imageUrl} name={product.name} />
 				}
 			</DialogContent>

@@ -1,8 +1,7 @@
 import React from "react"
-import { Filters } from "./use-filters"
 import qs from "qs"
 import { useRouter } from "next/navigation"
-
+import { Filters } from "./use-filters"
 
 
 

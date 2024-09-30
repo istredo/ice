@@ -1,9 +1,9 @@
-const mapIceSizes = {
-	250: 'Малый',
-	500: 'Средний',
-	1000: 'Большой',
+export const mapIceSizes = {
+	250: 'Малое',
+	500: 'Среднее',
+	1000: 'Большое',
 }
-const mapSugar = {
+export const mapSugar = {
 	0: 'Без сахара',
 	1: 'Классическое'
 }
