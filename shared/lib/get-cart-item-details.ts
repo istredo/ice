@@ -1,4 +1,3 @@
-import { Ingredient } from '@prisma/client';
 import { IceSize, mapSugar, Sugar } from '../const/ice';
 import { CartStateItem } from './get-cart-details';
 
@@ -11,8 +10,8 @@ export const getCartItemDetails = (
 	const details = [];
 
 	if (iceSizes && sugar) {
-		const typeName = sugar ? mapSugar[1] : mapSugar[0];
-		details.push(`${typeName} ${iceSizes} мл.`);
+		const typeName = Number(sugar);
+		details.push(`${mapSugar[typeName]} ${iceSizes} мл.`);
 	}
 
 	if (ingredients) {

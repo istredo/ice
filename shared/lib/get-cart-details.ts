@@ -20,7 +20,7 @@ interface ReturnProps {
 }
 
 export const getCartDetails = (data: CartDTO): ReturnProps => {
-	const items = data.userCart.items.map((item: CartItemDTO) => ({
+	const items = data.items.map((item: CartItemDTO) => ({
 		id: item.id,
 		quantity: item.quantity,
 		name: item.productItem.product.name,

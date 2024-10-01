@@ -188,13 +188,13 @@ async function up() {
 		data: [
 			{
 				userId: 1,
-				totalAmount: 1200,
-				token: 'авбгд',
+				totalAmount: 0,
+				token: '1234',
 			},
 			{
 				userId: 2,
 				totalAmount: 0,
-				token: 'ежзиклмн',
+				token: '1111',
 			},
 		],
 	});

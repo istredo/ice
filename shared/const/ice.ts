@@ -3,7 +3,7 @@ export const mapIceSizes = {
 	500: 'Среднее',
 	1000: 'Большое',
 }
-export const mapSugar = {
+export const mapSugar: { [key: number]: string } = {
 	0: 'Без сахара',
 	1: 'Классическое'
 }
