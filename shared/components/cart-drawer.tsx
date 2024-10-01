@@ -15,29 +15,46 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import { CartDrawerItem } from './cart-drawer-item';
 import { getCartItemDetails } from '../lib';
+import { useCartStore } from '../store';
+import { IceSize, Sugar } from '../const/ice';
 interface Props {
 	className?: string;
 }
 
 export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
+	const [fetchCartItems, totalAmount, items] = useCartStore(state => [state.fetchCartItems, state.totalAmount, state.items])
+	React.useEffect(() => {
+		fetchCartItems()
+	}, [])
 	return (
 		<Sheet>
 			<SheetTrigger asChild>{children}</SheetTrigger>
 			<SheetContent className="flex flex-col justify-between pb-0 bg-[#eef4f0]">
 				<SheetHeader>
 					<SheetTitle>
-						В корзине <span className="font-bold">3 товара</span>
+						В корзине <span className="font-bold">{items.length} товара</span>
 					</SheetTitle>
 				</SheetHeader>
 
 
 				<div className="-mx-6 mt-5 overflow-auto flex-1">
-					<div className="mb-2">
-						<CartDrawerItem id={0} imageUrl={'https://br-delivery.ru/upload/iblock/f6b/8wtppspnf102ko6i2aqqxt2j6wpn71j2.jpg'}
-							details={getCartItemDetails([{ name: 'Сливочное масло' }, { name: 'Сливочное масло' }], 1, 250)}
-							name={'Мороженка'} price={200} quantity={1} />
-
-					</div>
+					{items.map((item) => (
+						<div key={item.id} className="mb-2">
+							<CartDrawerItem
+								id={item.id}
+								imageUrl={item.imageUrl}
+								details={getCartItemDetails(
+									item.ingredients,
+									item.sugar as Sugar,
+									item.iceSize as IceSize,
+								)}
+								disabled={item.disabled}
+								name={item.name}
+								price={item.price}
+								quantity={item.quantity}
+							/>
+						</div>
+					))}
 				</div>
 				<SheetFooter className="-mx-6 bg-white p-8">
 					<div className="w-full">
@@ -47,7 +64,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 								<div className="flex-1 border-b border-dashed border-b-neutral-200 relative -top-1 mx-2" />
 							</span>
 
-							<span className="font-bold text-lg">300 ₽</span>
+							<span className="font-bold text-lg">{totalAmount} ₽</span>
 						</div>
 						<Link href="/checkout">
 							<Button
