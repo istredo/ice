@@ -119,7 +119,7 @@ async function up() {
 	const cake4 = await prisma.product.create({
 		data: {
 			name: 'Праздничный',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/85f/vy3hz6rfw0201ua95nmntbegapaktzxe.png',
+			imageUrl: 'https://brand-ice.ru/upload/iblock/033/033aa0e34406fd66ef226845ac5be693.jpg',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(5, 10),

@@ -6,6 +6,7 @@ import { Button } from '../ui/button';
 import { User } from 'lucide-react';
 import { SearchInput } from './search-input';
 import Link from 'next/link';
+import { CartButton } from './cart-button';
 
 
 interface Props {
@@ -29,11 +30,12 @@ export const Header: React.FC<Props> = ({ className }) => {
 					<SearchInput />
 				</div>
 
-				<div>
+				<div className='flex gap-4'>
 					<Button variant='outline' className='flex items-center gap-1 '>
 						<User size={16} />
 						Войти
 					</Button>
+					<CartButton />
 				</div>
 			</Container>
 		</header>
