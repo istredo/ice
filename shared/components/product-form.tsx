@@ -7,8 +7,9 @@ import { cn } from '@/shared/lib/utils';
 interface Props {
 	imageUrl: string;
 	name: string;
-	onSubmit?: (itemId: number, ingredients: number[]) => void;
+	onSubmit?: VoidFunction;
 	className?: string;
+	price: number;
 }
 
 export const ProductForm: React.FC<Props> = ({
@@ -16,9 +17,9 @@ export const ProductForm: React.FC<Props> = ({
 	imageUrl,
 	onSubmit,
 	className,
+	price
 }) => {
 	const textDetaills = 'loremipsum'
-	const totalPrice = 322
 	return (
 		<div className={cn(className, 'flex flex-1')}>
 			<div className="flex items-center justify-center flex-1 relative w-full">
@@ -32,8 +33,9 @@ export const ProductForm: React.FC<Props> = ({
 				<Title text={name} size="md" className="font-extrabold mb-1" />
 				<p className="text-gray-400">{textDetaills}</p>
 				<Button
+					onClick={onSubmit}
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
-					Добавить в корзину за {totalPrice} ₽
+					Добавить в корзину за {price} ₽
 				</Button>
 			</div>
 		</div>

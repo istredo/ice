@@ -10,6 +10,7 @@ interface ReturnProps {
 	sugar: Sugar;
 	selectedIngredients: Set<number>;
 	availableSizes: Variant[];
+	currentItemId?: number;
 	setSize: (value: IceSize) => void;
 	setSugar: (value: Sugar) => void;
 	addIngredient: (value: number) => void;
@@ -19,7 +20,7 @@ export const useProductOptions = (items: ProductItem[]): ReturnProps => {
 	const [sugar, setSugar] = React.useState<Sugar>(1)
 	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]))
 	const availableSizes = getAvailableSizes(items, sugar)
-
+	const currentItemId = items.find((item) => item.sugar === !!sugar && item.size === size)?.id
 
 	useEffect(() => {
 		const currentSize = availableSizes?.find((item) => Number(item.value) === size && !item.disabled)
@@ -33,6 +34,7 @@ export const useProductOptions = (items: ProductItem[]): ReturnProps => {
 		sugar,
 		selectedIngredients,
 		availableSizes,
+		currentItemId,
 		setSize,
 		setSugar,
 		addIngredient,

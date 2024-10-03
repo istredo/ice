@@ -12,3 +12,7 @@ export const updateItemQuantity = async (itemId: number, quantity: number): Prom
 export const removeCartItem = async (id: number): Promise<CartDTO> => {
 	return (await axiosInstance.delete<CartDTO>('/cart/' + id)).data;
 };
+
+export const addCartItem = async (values: any): Promise<CartDTO> => {
+	return (await axiosInstance.post<CartDTO>('/cart', values)).data;
+}

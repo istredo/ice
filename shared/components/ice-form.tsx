@@ -19,7 +19,7 @@ interface Props {
 	ingredients: Ingredient[];
 	items: ProductItem[];
 	loading?: boolean;
-	onSubmit?: VoidFunction
+	onSubmit: (itemId: number, ingredients: number[]) => void;
 	className?: string;
 }
 
@@ -37,6 +37,7 @@ export const IceForm: React.FC<Props> = ({
 		sugar,
 		selectedIngredients,
 		availableSizes,
+		currentItemId,
 		setSize,
 		setSugar,
 		addIngredient } = useProductOptions(items)
@@ -48,7 +49,9 @@ export const IceForm: React.FC<Props> = ({
 	)
 
 	const handleClickAdd = () => {
-		onSubmit?.()
+		if (currentItemId) {
+			onSubmit(currentItemId, Array.from(selectedIngredients))
+		}
 		console.log({
 			size,
 			sugar,
