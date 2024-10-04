@@ -62,7 +62,7 @@ async function up() {
 			imageUrl: 'https://br-delivery.ru/upload/iblock/f6b/8wtppspnf102ko6i2aqqxt2j6wpn71j2.jpg',
 			categoryId: 1,
 			ingredients: {
-				connect: _ingredients.slice(0, 3),
+				connect: _ingredients.slice(0, 4),
 			},
 		},
 	});
@@ -82,7 +82,7 @@ async function up() {
 			imageUrl: 'https://br-delivery.ru/upload/iblock/ebc/nbqa7p66rv1j6674blwx31hkhsek60yr.jpg',
 			categoryId: 1,
 			ingredients: {
-				connect: _ingredients.slice(10, 33),
+				connect: _ingredients.slice(4, 6),
 			},
 		},
 	});

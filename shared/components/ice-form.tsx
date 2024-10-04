@@ -52,11 +52,6 @@ export const IceForm: React.FC<Props> = ({
 		if (currentItemId) {
 			onSubmit(currentItemId, Array.from(selectedIngredients))
 		}
-		console.log({
-			size,
-			sugar,
-			ingredients: selectedIngredients
-		})
 	}
 
 	return (
@@ -87,6 +82,7 @@ export const IceForm: React.FC<Props> = ({
 					</div>
 				</div>
 				<Button
+					loading={loading}
 					onClick={handleClickAdd}
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
 					Добавить в корзину за {totalPrice} ₽

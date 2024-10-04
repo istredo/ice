@@ -10,6 +10,7 @@ interface Props {
 	onSubmit?: VoidFunction;
 	className?: string;
 	price: number;
+	loading?: boolean;
 }
 
 export const ProductForm: React.FC<Props> = ({
@@ -17,7 +18,8 @@ export const ProductForm: React.FC<Props> = ({
 	imageUrl,
 	onSubmit,
 	className,
-	price
+	price,
+	loading
 }) => {
 	const textDetaills = 'loremipsum'
 	return (
@@ -33,7 +35,8 @@ export const ProductForm: React.FC<Props> = ({
 				<Title text={name} size="md" className="font-extrabold mb-1" />
 				<p className="text-gray-400">{textDetaills}</p>
 				<Button
-					onClick={onSubmit}
+					loading={loading}
+					onClick={() => onSubmit?.()}
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10">
 					Добавить в корзину за {price} ₽
 				</Button>
