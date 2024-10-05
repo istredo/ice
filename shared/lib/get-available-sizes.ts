@@ -3,7 +3,7 @@ import { iceSizes, Sugar } from "../const/ice"
 import { Variant } from "../components/variants"
 
 export const getAvailableSizes = (items: ProductItem[], sugar: Sugar): Variant[] => {
-	const availableTypes = items.filter((item) => item.sugar == !!sugar)
+	const availableTypes = items.filter((item) => item.sugar == sugar)
 
 	return iceSizes.map((item) => ({
 		name: item.name,

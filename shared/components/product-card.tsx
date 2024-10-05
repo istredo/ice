@@ -3,6 +3,7 @@ import React from 'react';
 import { Title } from './title';
 import { Plus } from 'lucide-react';
 import { Button } from '../ui/button';
+import { Ingredient } from '@prisma/client';
 
 
 interface Props {
@@ -11,6 +12,7 @@ interface Props {
 	price: number;
 	imageUrl: string;
 	className?: string;
+	ingredients?: Ingredient[]
 }
 
 export const ProductCard: React.FC<Props> = ({
@@ -19,6 +21,7 @@ export const ProductCard: React.FC<Props> = ({
 	price,
 	imageUrl,
 	className,
+	ingredients
 }) => {
 	return (
 		<div className={className}>
@@ -30,8 +33,9 @@ export const ProductCard: React.FC<Props> = ({
 				<Title text={name} size="sm" className="mb-1 mt-3 font-bold" />
 
 				<p className="text-sm text-gray-400">
-					Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Однажды ее семь до обеспечивает на берегу великий не которой переулка жизни что грамматики послушавшись заманивший пояс жаренные, ему заголовок сих.
-				</p>
+					{
+						ingredients?.map((ingredient) => ingredient.name).join(', ')
+					}				</p>
 
 				<div className="flex justify-between items-center mt-4">
 					<span className="text-[20px]">

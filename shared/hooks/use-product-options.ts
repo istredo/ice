@@ -20,7 +20,7 @@ export const useProductOptions = (items: ProductItem[]): ReturnProps => {
 	const [sugar, setSugar] = React.useState<Sugar>(1)
 	const [selectedIngredients, { toggle: addIngredient }] = useSet(new Set<number>([]))
 	const availableSizes = getAvailableSizes(items, sugar)
-	const currentItemId = items.find((item) => item.sugar === !!sugar && item.size === size)?.id
+	const currentItemId = items.find((item) => item.sugar === sugar && item.size === size)?.id
 
 	useEffect(() => {
 		const currentSize = availableSizes?.find((item) => Number(item.value) === size && !item.disabled)

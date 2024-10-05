@@ -57,7 +57,7 @@ model ProductItem {
 
    price Int
    size  Int?
-   sugar Boolean?
+   sugar Int?
 
    cartItems CartItem[]
 

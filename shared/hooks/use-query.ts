@@ -18,6 +18,6 @@ export const useQuery = (filters: Filters) => {
 		})
 
 		router.push(`?${query}`, { scroll: false })
-	}, [filters, router])
+	}, [filters])
 
 }

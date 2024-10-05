@@ -13,7 +13,7 @@ const generateProductItem = ({
 	size,
 }: {
 	productId: number;
-	sugar?: boolean;
+	sugar?: number;
 	size?: 250 | 500 | 1000 | 2500;
 }) => {
 	return {
@@ -130,46 +130,46 @@ async function up() {
 	await prisma.productItem.createMany({
 		data: [
 			// Мороженка "Сливочный пломбир"
-			generateProductItem({ productId: ice1.id, sugar: true, size: 250 }),
-			generateProductItem({ productId: ice1.id, sugar: false, size: 500 }),
-			generateProductItem({ productId: ice1.id, sugar: false, size: 1000 }),
+			generateProductItem({ productId: ice1.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice1.id, sugar: 0, size: 500 }),
+			generateProductItem({ productId: ice1.id, sugar: 0, size: 1000 }),
 
 			// Мороженка "Вишневое удовольствие"
-			generateProductItem({ productId: ice2.id, sugar: true, size: 250 }),
-			generateProductItem({ productId: ice2.id, sugar: true, size: 500 }),
-			generateProductItem({ productId: ice2.id, sugar: true, size: 1000 }),
-			generateProductItem({ productId: ice2.id, sugar: false, size: 250 }),
-			generateProductItem({ productId: ice2.id, sugar: false, size: 500 }),
-			generateProductItem({ productId: ice2.id, sugar: false, size: 1000 }),
+			generateProductItem({ productId: ice2.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice2.id, sugar: 1, size: 500 }),
+			generateProductItem({ productId: ice2.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: ice2.id, sugar: 0, size: 250 }),
+			generateProductItem({ productId: ice2.id, sugar: 0, size: 500 }),
+			generateProductItem({ productId: ice2.id, sugar: 0, size: 1000 }),
 
 			// Мороженка "Шоколадное наслаждение"
-			generateProductItem({ productId: ice3.id, sugar: true, size: 250 }),
-			generateProductItem({ productId: ice3.id, sugar: false, size: 500 }),
-			generateProductItem({ productId: ice3.id, sugar: false, size: 1000 }),
+			generateProductItem({ productId: ice3.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice3.id, sugar: 0, size: 500 }),
+			generateProductItem({ productId: ice3.id, sugar: 0, size: 1000 }),
 
 
 			// Торт "Love"
-			generateProductItem({ productId: cake1.id, sugar: true, size: 2500 }),
-			generateProductItem({ productId: cake1.id, sugar: false, size: 2500 }),
-			generateProductItem({ productId: cake1.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake1.id, sugar: 1, size: 2500 }),
+			generateProductItem({ productId: cake1.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake1.id, sugar: 0, size: 2500 }),
 
 			// Торт "Мишка"
-			generateProductItem({ productId: cake2.id, sugar: true, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: true, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: true, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: false, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: false, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 1, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 1, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 1, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 0, size: 2500 }),
 
 			// Торт "Сыр"
-			generateProductItem({ productId: cake3.id, sugar: true, size: 2500 }),
-			generateProductItem({ productId: cake3.id, sugar: false, size: 2500 }),
-			generateProductItem({ productId: cake3.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake3.id, sugar: 1, size: 2500 }),
+			generateProductItem({ productId: cake3.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake3.id, sugar: 0, size: 2500 }),
 
 			// Торт "Праздничный"
-			generateProductItem({ productId: cake4.id, sugar: true, size: 2500 }),
-			generateProductItem({ productId: cake4.id, sugar: false, size: 2500 }),
-			generateProductItem({ productId: cake4.id, sugar: false, size: 2500 }),
+			generateProductItem({ productId: cake4.id, sugar: 1, size: 2500 }),
+			generateProductItem({ productId: cake4.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake4.id, sugar: 0, size: 2500 }),
 
 			// Остальные продукты
 			generateProductItem({ productId: 1 }),

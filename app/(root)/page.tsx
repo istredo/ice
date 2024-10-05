@@ -1,17 +1,10 @@
 import { Container, Filters, ProductsList, Title, TopBar } from "@/shared/components";
 import { prisma } from "@/prisma/prisma-client";
+import { Suspense } from "react";
+import { findIces, GetSearchParams } from "@/shared/lib/find-ices";
 
-export default async function Home() {
-	const categories = await prisma.category.findMany({
-		include: {
-			products: {
-				include: {
-					ingredients: true,
-					items: true
-				}
-			}
-		}
-	})
+export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {
+	const categories = await findIces(searchParams);
 
 	return (
 		<>
@@ -25,7 +18,7 @@ export default async function Home() {
 				<div className="flex gap-[60px]">
 					{/* Настройки */}
 					<div className="w-[250px]">
-						<Filters />
+						<Suspense><Filters /></Suspense>
 					</div>
 					{/* Товары */}
 					<div className="flex-1">
