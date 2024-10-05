@@ -15,7 +15,6 @@ import { Button } from '../ui/button';
 import Link from 'next/link';
 import { CartDrawerItem } from './cart-drawer-item';
 import { getCartItemDetails } from '../lib';
-import { useCartStore } from '../store';
 import { IceSize, Sugar } from '../const/ice';
 import { useCart } from '../hooks';
 interface Props {

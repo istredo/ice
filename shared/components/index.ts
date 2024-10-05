@@ -18,5 +18,6 @@ export { IceForm } from './ice-form'
 export { IngridientItem } from './ingridient-item'
 export { CartButton } from './cart-button'
 export { CartDrawer } from './cart-drawer'
+export { ChooseProduct } from './choose-product'
 
 export * from './modals';

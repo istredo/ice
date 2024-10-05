@@ -42,7 +42,7 @@ export const IceForm: React.FC<Props> = ({
 		setSugar,
 		addIngredient } = useProductOptions(items)
 
-	const textDetaills = `${mapIceSizes[size]}, ${selectedIngredients.size ? `${mapSugar[sugar].toLowerCase()}, с наполнителями` : `${mapSugar[sugar].toLowerCase()}`}`
+	const textDetaills = `${mapIceSizes[size]}, ${selectedIngredients.size ? `${mapSugar[sugar].toLowerCase()}, с дополнительными игредиетами` : `${mapSugar[sugar].toLowerCase()}`}`
 
 	const totalPrice = calcTotalPrice(
 		items, ingredients, size, sugar, selectedIngredients
