@@ -25,6 +25,7 @@ interface Props {
 
 export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children, className }) => {
 	const { totalAmount, updateItemQuantity, items, removeCartItem } = useCart();
+	const [redirecting, setRedirecting] = React.useState(false);
 	const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
 		const updateQuantity = type === 'plus' ? quantity + 1 : quantity - 1
 		updateItemQuantity(id, updateQuantity)
@@ -93,6 +94,8 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 							</div>
 							<Link href="/checkout">
 								<Button
+									onClick={() => setRedirecting(true)}
+									loading={redirecting}
 									type="submit"
 									className="w-full h-12 text-base">
 									Оформить заказ

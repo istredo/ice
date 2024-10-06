@@ -19,5 +19,10 @@ export { IngridientItem } from './ingridient-item'
 export { CartButton } from './cart-button'
 export { CartDrawer } from './cart-drawer'
 export { ChooseProduct } from './choose-product'
+export { WhiteBlock } from './white-block'
+export { CheckoutDetails } from './checkout-details'
+export { CheckoutSidebar } from './checkout-sidebar'
+export { CheckoutItem } from './checkout-item'
+export { CheckoutItemSkeleton } from './checkout-item-skeleton'
 
 export * from './modals';
