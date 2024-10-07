@@ -1,9 +1,10 @@
 import { cn } from '@/shared/lib/utils';
 import React from 'react';
 
-import * as CartItem from './cart-item-details';
-import { CartItemProps } from './cart-item-details/cart-item-details.types';
+
+import { CartItemProps } from '../cart/cart-item-details.types';
 import { X } from 'lucide-react';
+import { CartItemDetailsCountButton, CartItemDetailsImage, CartItemDetailsPrice, CartItemInfo } from '../cart/index';
 
 interface Props extends CartItemProps {
 	onClickCountButton?: (type: 'plus' | 'minus') => void;
@@ -32,12 +33,12 @@ export const CheckoutItem: React.FC<Props> = ({
 				className,
 			)}>
 			<div className="flex items-center gap-5 flex-1">
-				<CartItem.Image src={imageUrl} />
-				<CartItem.Info name={name} details={details} />
+				<CartItemDetailsImage src={imageUrl} />
+				<CartItemInfo name={name} details={details} />
 			</div>
-			<CartItem.Price value={price} />
+			<CartItemDetailsPrice value={price} />
 			<div className="flex items-center gap-5 ml-20">
-				<CartItem.CountButton onClick={onClickCountButton} value={quantity} />
+				<CartItemDetailsCountButton onClick={onClickCountButton} value={quantity} />
 				<button onClick={onClickRemove}>
 					<X className='text-gray-400 cursor-pointer hover:text-gray-600' size={20} />
 				</button>

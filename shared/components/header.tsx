@@ -6,7 +6,7 @@ import { Button } from '../ui/button';
 import { User } from 'lucide-react';
 import { SearchInput } from './search-input';
 import Link from 'next/link';
-import { CartButton } from './cart-button';
+import { CartButton } from './cart/cart-button';
 
 
 interface Props {

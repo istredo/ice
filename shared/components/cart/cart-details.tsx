@@ -7,7 +7,7 @@ interface Props {
 	value?: React.ReactNode;
 }
 
-export const CheckoutDetails: React.FC<Props> = ({ className, title, value }) => {
+export const CartDetails: React.FC<Props> = ({ className, title, value }) => {
 	return (
 		<div className={cn('flex my-4', className)}>
 			<span className="flex flex-1 text-lg text-neutral-500">

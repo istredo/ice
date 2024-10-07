@@ -10,15 +10,15 @@ import {
 	SheetHeader,
 	SheetTitle,
 	SheetTrigger,
-} from "../ui/sheet"
+} from "../../ui/sheet"
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { CartDrawerItem } from './cart-drawer-item';
-import { getCartItemDetails } from '../lib';
-import { IceSize, Sugar } from '../const/ice';
-import { useCart } from '../hooks';
-import { Title } from './title';
+import { getCartItemDetails } from '../../lib';
+import { IceSize, Sugar } from '../../const/ice';
+import { useCart } from '../../hooks';
+import { Title } from '../title';
 interface Props {
 	className?: string;
 }

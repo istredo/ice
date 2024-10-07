@@ -1,9 +1,10 @@
 import React from 'react';
 import { cn } from '@/shared/lib/utils';
-import { WhiteBlock } from './white-block';
-import { CheckoutDetails } from './checkout-details';
+import { WhiteBlock } from '../white-block';
+import { CartDetails } from '../cart/cart-details';
 import { ArrowRight, Package, Percent, Truck } from 'lucide-react';
-import { Button } from '../ui';
+import { Button, Skeleton } from '../../ui';
+
 const DISCOUNT = 10
 const DELIVERY_PRICE = 500
 interface Props {
@@ -18,31 +19,35 @@ export const CheckoutSidebar: React.FC<Props> = ({ totalAmount, loading, classNa
 		<WhiteBlock className={cn('p-6 sticky top-4', className)}>
 			<div className="flex flex-col gap-1">
 				<span className="text-xl">Итого:</span>
-				<span className="h-11 text-[34px] font-extrabold">{totalAmount} ₽</span>
+				{
+					loading ? <Skeleton className="h-11 w-48 rounded-[6px]" /> : <span className="h-11 text-[34px] font-extrabold ">{totalAmount - discountPrice + DELIVERY_PRICE} ₽</span>
+
+				}
 			</div>
-			<CheckoutDetails title={
+			<CartDetails title={
 				<div className="flex items-center">
 					<Package size={18} className="mr-2 text-gray-400" />
 					Стоимость товаров:
 				</div>
-			} value={`${totalAmount - discountPrice}₽`} />
-			<CheckoutDetails
+			} value={loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${totalAmount} ₽`}
+			/>
+			<CartDetails
 				title={
 					<div className="flex items-center">
 						<Truck size={18} className="mr-2 text-gray-400" />
 						Доставка:
 					</div>
 				}
-				value={`${DELIVERY_PRICE} ₽`}
+				value={loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${DELIVERY_PRICE} ₽`}
 			/>
-			<CheckoutDetails
+			<CartDetails
 				title={
 					<div className="flex items-center">
 						<Percent size={18} className="mr-2 text-gray-400" />
 						Скидка:
 					</div>
 				}
-				value={`${discountPrice} ₽`}
+				value={loading ? <Skeleton className="h-6 w-16 rounded-[6px]" /> : `${discountPrice} ₽`}
 			/>
 			<Button
 				loading={loading}

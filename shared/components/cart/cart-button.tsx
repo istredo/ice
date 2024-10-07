@@ -1,10 +1,10 @@
 'use client';
 import React from 'react';
 import { cn } from '@/shared/lib/utils';
-import { Button } from '../ui/button';
+import { Button } from '../../ui/button';
 import { ArrowRight, ShoppingCart } from 'lucide-react';
 import { CartDrawer } from './cart-drawer';
-import { useCartStore } from '../store';
+import { useCartStore } from '../../store';
 
 interface Props {
 	className?: string;
