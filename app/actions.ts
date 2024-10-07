@@ -1,7 +1,9 @@
 'use server';
 
 import { prisma } from "@/prisma/prisma-client";
+import { PayOrderTemplate } from "@/shared/components";
 import { CheckoutFormValues } from "@/shared/const/checkout-form-schema";
+import { createPayment, sendEmail } from "@/shared/lib";
 import { OrderStatus } from "@prisma/client";
 import { cookies } from "next/headers";
 
@@ -66,8 +68,34 @@ export async function createOrder(data: CheckoutFormValues) {
 			},
 		});
 
+		// Оплата
+		const paymentData = await createPayment({
+			amount: order.totalAmount,
+			orderId: order.id,
+			description: 'Оплата заказа #' + order.id,
+		});
 
+		if (!paymentData) {
+			throw new Error('Payment data not found');
+		}
 
+		await prisma.order.update({
+			where: {
+				id: order.id,
+			},
+			data: {
+				paymentId: paymentData.id,
+			},
+		});
+		const paymentUrl = paymentData.confirmation.confirmation_url;
+
+		await sendEmail(data.email, `Заказ No${order.id} ожидает оплаты `,
+			PayOrderTemplate({
+				orderId: order.id,
+				totalAmount: order.totalAmount,
+				paymentUrl,
+			}),);
+		return paymentUrl;
 
 
 	} catch (error) {
