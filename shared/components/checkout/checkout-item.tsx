@@ -40,7 +40,7 @@ export const CheckoutItem: React.FC<Props> = ({
 			<div className="flex items-center gap-5 ml-20">
 				<CartItemDetailsCountButton onClick={onClickCountButton} value={quantity} />
 				<button onClick={onClickRemove}>
-					<X className='text-gray-400 cursor-pointer hover:text-gray-600' size={20} />
+					<X className="text-gray-400 cursor-pointer hover:text-gray-600" size={20} />
 				</button>
 			</div>
 		</div >

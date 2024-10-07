@@ -47,9 +47,9 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 			<div className={className}>
 				<p className="font-bold mb-3">{title}</p>
 				{
-					...Array(limit).fill(0).map((_, index) => <Skeleton className='h-6 mb-4 rounded-[8px]' key={index} />)
+					...Array(limit).fill(0).map((_, index) => <Skeleton className="h-6 mb-4 rounded-[8px]" key={index} />)
 				}
-				<Skeleton className='w-28 h-6 mb-4 rounded-[8px]' />
+				<Skeleton className="w-28 h-6 mb-4 rounded-[8px]" />
 			</div>
 		)
 	}

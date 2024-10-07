@@ -14,6 +14,8 @@ import {
 	CheckoutPersonalForm,
 	CheckoutAddressForm,
 } from '@/shared/components';
+import { createOrder } from '@/app/actions';
+import toast from 'react-hot-toast';
 
 
 export default function CheckoutPage() {
@@ -35,16 +37,34 @@ export default function CheckoutPage() {
 		},
 	});
 	const onSubmit = async (data: CheckoutFormValues) => {
-		console.log(data)
+		try {
+			setSubmitting(true);
+
+			const url = await createOrder(data);
+
+			toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
+				icon: '✅',
+			});
+
+			if (url) {
+				location.href = url;
+			}
+		} catch (err) {
+			console.log(err);
+			setSubmitting(false);
+			toast.error('Не удалось создать заказ', {
+				icon: '❌',
+			});
+		}
 	};
 	return (
 		<Container className="mt-10">
 			<Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />
 			<FormProvider {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>
-					<div className='flex gap-10'>
+					<div className="flex gap-10">
 						{/* Левая часть */}
-						<div className='flex flex-col gap-10  flex-1 mb-20'>
+						<div className="flex flex-col gap-10  flex-1 mb-20">
 							<CheckoutCartForm
 								onClickCountButton={onClickCountButton}
 								removeCartItem={removeCartItem}
@@ -52,9 +72,9 @@ export default function CheckoutPage() {
 								loading={loading}
 							/>
 
-							<CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
+							<CheckoutPersonalForm className={loading ? "opacity-40 pointer-events-none" : ''} />
 
-							<CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''} />
+							<CheckoutAddressForm className={loading ? "opacity-40 pointer-events-none" : ''} />
 						</div>
 
 						{/* Правая часть */}

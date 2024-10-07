@@ -61,12 +61,12 @@ export const IceForm: React.FC<Props> = ({
 			<div className="w-[490px] bg-[#f7f6f5] p-7">
 				<Title text={name} size="md" className="font-extrabold mb-1" />
 				<p className="text-gray-400">{textDetaills}</p>
-				<div className='flex flex-col gap-4 mt-7'>
+				<div className="flex flex-col gap-4 mt-7">
 					<Variants items={availableSizes} value={String(size)} onClick={value => setSize(Number(value) as IceSize)} />
 					<Variants items={sugarTypes} value={String(sugar)} onClick={value => setSugar(Number(value) as Sugar)} />
 				</div>
 				<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-5">
-					<div className='grid grid-cols-3 gap-3'>
+					<div className="grid grid-cols-3 gap-3">
 						{
 							ingredients.map((ingredient) => (
 								<IngridientItem

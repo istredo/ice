@@ -22,11 +22,11 @@ export const Filters: React.FC<Props> = ({ className }) => {
 	};
 	return (
 		<div className={cn(className)}>
-			<Title text='Фильтрация' size='sm' className='mb-5 font-bold' />
+			<Title text='Фильтрация' size='sm' className="mb-5 font-bold" />
 			{/* Чекбоксы */}
 			<CheckboxFiltersGroup
 				title='Начинка'
-				className='mt-5'
+				className="mt-5"
 				limit={3}
 				defaultItems={items.slice(0, 3)}
 				items={items}
@@ -37,7 +37,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
 			/>
 			<CheckboxFiltersGroup
 				title='Объем'
-				className='mt-5'
+				className="mt-5"
 				limit={4}
 				items={[
 					{ text: 'Малый', value: '250' },
@@ -51,7 +51,7 @@ export const Filters: React.FC<Props> = ({ className }) => {
 			/>
 			<CheckboxFiltersGroup
 				title='Сахар'
-				className='mt-5'
+				className="mt-5"
 				limit={2}
 				items={[
 					{ text: 'Без сахара', value: '0' },
