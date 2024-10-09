@@ -1,17 +1,16 @@
-
+import { CartItemDTO } from '@/shared/services/dto/cart.dto';
 import React from 'react';
-import { CartItemDTO } from '../../services/dto/cart.dto';
 
 interface Props {
 	orderId: number;
 	items: CartItemDTO[];
 }
 
-export const OrderSuccessTemplate: React.FC<Props> = ({ orderId, items }) => (
+export const OrderCanceledTemplate: React.FC<Props> = ({ orderId, items }) => (
 	<div>
-		<h1>Спасибо за покупку! 🎉</h1>
+		<h1>Проблема с оплатой заказа</h1>
 
-		<p>Ваш заказ #{orderId} оплачен. Список товаров:</p>
+		<p>Ваш заказ #{orderId} не был оплачен. Список товаров:</p>
 
 		<hr />
 
