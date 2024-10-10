@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useSearchParams } from 'next/navigation';
-import { useSession } from 'next-auth/react';
 import { cn } from '@/shared/lib/utils';
 import { SearchInput, CartButton, ProfileButton, Container, AuthModal } from '@/shared/components';
 
@@ -18,8 +17,6 @@ interface Props {
 export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart = true }) => {
 	const [openAuthModal, setOpenAuthModal] = React.useState(false);
 	const searchParams = useSearchParams();
-	const { data: session } = useSession()
-	console.log(session)
 	React.useEffect(() => {
 
 		if (searchParams.has('paid')) {
