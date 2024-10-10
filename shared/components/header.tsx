@@ -1,14 +1,12 @@
 'use client';
 import React from 'react';
 import Image from 'next/image';
-import { User } from 'lucide-react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useSearchParams } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { cn } from '@/shared/lib/utils';
-import { Button } from '../ui';
-import { SearchInput, CartButton, ProfileButton, Container } from '@/shared/components';
+import { SearchInput, CartButton, ProfileButton, Container, AuthModal } from '@/shared/components';
 
 
 interface Props {
@@ -18,6 +16,7 @@ interface Props {
 }
 
 export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart = true }) => {
+	const [openAuthModal, setOpenAuthModal] = React.useState(false);
 	const searchParams = useSearchParams();
 	const { data: session } = useSession()
 	console.log(session)
@@ -53,7 +52,10 @@ export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart =
 				</div>
 
 				<div className="flex gap-4">
-					<ProfileButton />
+
+					<AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
+
+					<ProfileButton onClickSignIn={() => setOpenAuthModal(true)} />
 					{
 						hasCart &&
 						<CartButton />
