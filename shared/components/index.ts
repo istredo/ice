@@ -22,10 +22,11 @@ export { ChooseProduct } from './choose-product'
 export { WhiteBlock } from './white-block'
 export { AdressInput } from './address-input'
 export { CheckoutSidebar } from './checkout/checkout-sidebar'
-
+export { Providers } from './providers'
 export { RequiredSymbol } from './required-symbol'
 export { ClearButton } from './clear-button'
 export { ErrorText } from './error-text'
+export { ProfileButton } from './profile-button'
 
 export * from './form';
 export * from './modals';

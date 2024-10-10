@@ -3,14 +3,12 @@ import React from 'react';
 import Image from 'next/image';
 import { User } from 'lucide-react';
 import Link from 'next/link';
-import router from 'next/router';
 import toast from 'react-hot-toast';
 import { useSearchParams } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 import { cn } from '@/shared/lib/utils';
-import { Container } from './container';
-import { Button } from '../ui/button';
-import { SearchInput } from './search-input';
-import { CartButton } from './cart/cart-button';
+import { Button } from '../ui';
+import { SearchInput, CartButton, ProfileButton, Container } from '@/shared/components';
 
 
 interface Props {
@@ -21,7 +19,8 @@ interface Props {
 
 export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart = true }) => {
 	const searchParams = useSearchParams();
-
+	const { data: session } = useSession()
+	console.log(session)
 	React.useEffect(() => {
 
 		if (searchParams.has('paid')) {
@@ -54,10 +53,7 @@ export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart =
 				</div>
 
 				<div className="flex gap-4">
-					<Button variant='outline' className="flex items-center gap-1">
-						<User size={16} />
-						Войти
-					</Button>
+					<ProfileButton />
 					{
 						hasCart &&
 						<CartButton />

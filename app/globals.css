@@ -81,6 +81,7 @@ html {
 	}
 }
 
+/* Progress bar */
 #nprogress .bar {
 	@apply bg-primary !important;
 }
