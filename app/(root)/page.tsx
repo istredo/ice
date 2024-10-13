@@ -1,6 +1,5 @@
-import { Container, Filters, ProductsList, Title, TopBar } from "@/shared/components";
-import { prisma } from "@/prisma/prisma-client";
 import { Suspense } from "react";
+import { Container, Filters, ProductsList, Title, TopBar } from "@/shared/components";
 import { findIces, GetSearchParams } from "@/shared/lib/find-ices";
 
 export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {

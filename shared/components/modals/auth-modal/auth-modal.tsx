@@ -4,6 +4,7 @@ import React from 'react';
 import { Dialog, DialogContent } from '@/shared/ui/dialog';
 import { Button } from '@/shared/ui/button';
 import { LoginForm } from './forms/login-form';
+import { RegisterForm } from './forms/register-form';
 
 interface Props {
 	open: boolean;
@@ -27,7 +28,7 @@ export const AuthModal: React.FC<Props> = ({ open, onClose }) => {
 				{type === 'login' ? (
 					<LoginForm onClose={handleClose} />
 				) : (
-					<h1>register</h1>
+					<RegisterForm onClose={handleClose} />
 				)}
 
 				<hr />
