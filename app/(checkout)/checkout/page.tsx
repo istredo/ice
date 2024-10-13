@@ -16,11 +16,14 @@ import {
 } from '@/shared/components';
 import { createOrder } from '@/app/actions';
 import toast from 'react-hot-toast';
+import { useSession } from 'next-auth/react';
+import { Api } from '@/shared/services/api-client';
 
 
 export default function CheckoutPage() {
 	const [submitting, setSubmitting] = React.useState(false);
 	const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
+	const { data: session } = useSession()
 	const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
 		const updateQuantity = type === 'plus' ? quantity + 1 : quantity - 1
 		updateItemQuantity(id, updateQuantity)
@@ -36,6 +39,20 @@ export default function CheckoutPage() {
 			comment: '',
 		},
 	});
+	React.useEffect(() => {
+		async function fetchUserInfo() {
+			const data = await Api.auth.getMe();
+			console.log(data)
+			const [firstName, lastName] = data.fullName.split(' ');
+
+			form.setValue('firstName', firstName);
+			form.setValue('lastName', lastName);
+			form.setValue('email', data.email);
+		}
+		if (session) {
+			fetchUserInfo();
+		}
+	}, [session])
 	const onSubmit = async (data: CheckoutFormValues) => {
 		try {
 			setSubmitting(true);
