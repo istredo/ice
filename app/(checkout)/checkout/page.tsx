@@ -24,10 +24,7 @@ export default function CheckoutPage() {
 	const [submitting, setSubmitting] = React.useState(false);
 	const { totalAmount, updateItemQuantity, items, removeCartItem, loading } = useCart();
 	const { data: session } = useSession()
-	const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
-		const updateQuantity = type === 'plus' ? quantity + 1 : quantity - 1
-		updateItemQuantity(id, updateQuantity)
-	}
+
 	const form = useForm<CheckoutFormValues>({
 		resolver: zodResolver(checkoutFormSchema),
 		defaultValues: {
@@ -39,20 +36,21 @@ export default function CheckoutPage() {
 			comment: '',
 		},
 	});
+
 	React.useEffect(() => {
 		async function fetchUserInfo() {
 			const data = await Api.auth.getMe();
-			console.log(data)
 			const [firstName, lastName] = data.fullName.split(' ');
 
 			form.setValue('firstName', firstName);
 			form.setValue('lastName', lastName);
 			form.setValue('email', data.email);
 		}
+
 		if (session) {
 			fetchUserInfo();
 		}
-	}, [session])
+	}, [session]);
 	const onSubmit = async (data: CheckoutFormValues) => {
 		try {
 			setSubmitting(true);
@@ -74,6 +72,11 @@ export default function CheckoutPage() {
 			});
 		}
 	};
+
+	const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
+		const updateQuantity = type === 'plus' ? quantity + 1 : quantity - 1
+		updateItemQuantity(id, updateQuantity)
+	}
 	return (
 		<Container className="mt-10">
 			<Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />
