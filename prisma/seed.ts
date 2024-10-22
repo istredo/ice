@@ -209,7 +209,39 @@ async function up() {
 			},
 		},
 	});
+	await prisma.story.createMany({
+		data: [
+			{
+				previewImageUrl:
+					'https://cdn.inappstory.ru/story/km2/9gf/jrn/sb7ls1yj9fe5bwvuwgym73e/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=3074015640',
+			},
+			{
+				previewImageUrl:
+					'https://cdn.inappstory.ru/story/q0t/flg/0ph/xt67uw7kgqe9bag7spwkkyw/custom_cover/logo-350x440.webp?k=IgAAAAAAAAAE&v=2941222737',
+			},
 
+		],
+	});
+
+	await prisma.storyItem.createMany({
+		data: [
+			{
+				storyId: 1,
+				sourceUrl:
+					'https://cdn.inappstory.ru/file/dd/yj/sx/oqx9feuljibke3mknab7ilb35t.webp?k=IgAAAAAAAAAE',
+			},
+			{
+				storyId: 1,
+				sourceUrl:
+					'https://cdn.inappstory.ru/file/ur/uq/le/9ufzwtpdjeekidqq04alfnxvu2.webp?k=IgAAAAAAAAAE',
+			},
+			{
+				storyId: 1,
+				sourceUrl:
+					'https://cdn.inappstory.ru/file/sy/vl/c7/uyqzmdojadcbw7o0a35ojxlcul.webp?k=IgAAAAAAAAAE',
+			},
+		],
+	});
 }
 
 async function down() {
@@ -220,6 +252,8 @@ async function down() {
 	await prisma.$executeRaw`TRUNCATE TABLE "Ingredient" RESTART IDENTITY CASCADE`;
 	await prisma.$executeRaw`TRUNCATE TABLE "Product" RESTART IDENTITY CASCADE`;
 	await prisma.$executeRaw`TRUNCATE TABLE "ProductItem" RESTART IDENTITY CASCADE`;
+	await prisma.$executeRaw`TRUNCATE TABLE "Story" RESTART IDENTITY CASCADE`;
+	await prisma.$executeRaw`TRUNCATE TABLE "StoryItem" RESTART IDENTITY CASCADE`;
 }
 
 async function main() {

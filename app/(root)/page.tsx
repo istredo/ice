@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Container, Filters, ProductsList, Title, TopBar } from "@/shared/components";
+import { Container, Filters, ProductsList, Title, TopBar, Stories } from "@/shared/components";
 import { findIces, GetSearchParams } from "@/shared/lib/find-ices";
 
 export default async function Home({ searchParams }: { searchParams: GetSearchParams }) {
@@ -13,6 +13,8 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
 
 			</Container>
 			<TopBar categories={categories.filter((category) => category.products.length > 0)} />
+
+			<Stories />
 			<Container className="mt-10 pb-14">
 				<div className="flex gap-[60px]">
 					{/* Настройки */}
