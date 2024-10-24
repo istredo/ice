@@ -5,10 +5,9 @@ import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
 
-export async function GET(req: any, res: any) {
+export async function GET() {
 	try {
-		const session = await getServerSession(req, res, authOptions);
-
+		const session = await getServerSession(authOptions);
 		if (!session) {
 			return NextResponse.json({ message: 'Вы не авторизованы' }, { status: 401 });
 		}
@@ -23,7 +22,6 @@ export async function GET(req: any, res: any) {
 				password: false,
 			},
 		});
-
 		return NextResponse.json(data);
 	} catch (error) {
 		console.log(error);
