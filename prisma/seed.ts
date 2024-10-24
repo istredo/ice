@@ -14,11 +14,11 @@ const generateProductItem = ({
 }: {
 	productId: number;
 	sugar?: number;
-	size?: 250 | 500 | 1000 | 2500;
+	size?: 250 | 500 | 1000 | 1000;
 }) => {
 	return {
 		productId,
-		price: randomDecimalNumber(190, 600),
+		price: size ? randomDecimalNumber(690, 1300) : randomDecimalNumber(190, 380),
 		sugar,
 		size,
 	} as Prisma.ProductItemUncheckedCreateInput;
@@ -59,7 +59,7 @@ async function up() {
 	const ice1 = await prisma.product.create({
 		data: {
 			name: 'Сливочный пломбир',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/f6b/8wtppspnf102ko6i2aqqxt2j6wpn71j2.jpg',
+			imageUrl: '/assets/ice_vanila.png',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(0, 4),
@@ -69,7 +69,7 @@ async function up() {
 	const ice2 = await prisma.product.create({
 		data: {
 			name: 'Черничное удовольствие',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/efd/tqjdmlpghgim59qytclbbbif80m6pb37.jpg',
+			imageUrl: '/assets/ice_black.png',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(3, 10),
@@ -79,17 +79,47 @@ async function up() {
 	const ice3 = await prisma.product.create({
 		data: {
 			name: 'Шоколадное наслаждение',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/ebc/nbqa7p66rv1j6674blwx31hkhsek60yr.jpg',
+			imageUrl: '/assets/ice_choco.png',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(4, 6),
 			},
 		},
 	});
+	const ice4 = await prisma.product.create({
+		data: {
+			name: 'Клубничное настроение',
+			imageUrl: '/assets/ice_strawberry.png',
+			categoryId: 1,
+			ingredients: {
+				connect: _ingredients.slice(0, 8),
+			},
+		},
+	});
+	const ice5 = await prisma.product.create({
+		data: {
+			name: 'Морозная свежесть',
+			imageUrl: '/assets/ice_mint.png',
+			categoryId: 1,
+			ingredients: {
+				connect: _ingredients.slice(3, 8),
+			},
+		},
+	});
+	const ice6 = await prisma.product.create({
+		data: {
+			name: 'Тропический бриз',
+			imageUrl: '/assets/ice_orange.png',
+			categoryId: 1,
+			ingredients: {
+				connect: _ingredients.slice(0, 6),
+			},
+		},
+	});
 	const cake1 = await prisma.product.create({
 		data: {
 			name: 'Love',
-			imageUrl: 'https://brand-ice.ru/upload/iblock/fc8/fc884aa5791f4410ad7f1b52963b3bf4.jpg',
+			imageUrl: '/assets/cake_strawberry.png',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(2, 5),
@@ -98,8 +128,8 @@ async function up() {
 	});
 	const cake2 = await prisma.product.create({
 		data: {
-			name: 'Мишка',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/cb5/rd3a0dvhumuzczak7ghp23c35n03w91s.jpg',
+			name: 'Шоколадный торт',
+			imageUrl: '/assets/cake_choco.png',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(3, 8),
@@ -108,21 +138,11 @@ async function up() {
 	});
 	const cake3 = await prisma.product.create({
 		data: {
-			name: 'Сыр',
-			imageUrl: 'https://br-delivery.ru/upload/iblock/e64/g7esk7890dhcje51buvqqs4zfz7ccfdk.jpg',
+			name: 'Классика',
+			imageUrl: '/assets/cake.png',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(1, 4),
-			},
-		},
-	});
-	const cake4 = await prisma.product.create({
-		data: {
-			name: 'Праздничный',
-			imageUrl: 'https://brand-ice.ru/upload/iblock/033/033aa0e34406fd66ef226845ac5be693.jpg',
-			categoryId: 2,
-			ingredients: {
-				connect: _ingredients.slice(5, 10),
 			},
 		},
 	});
@@ -147,29 +167,49 @@ async function up() {
 			generateProductItem({ productId: ice3.id, sugar: 0, size: 500 }),
 			generateProductItem({ productId: ice3.id, sugar: 0, size: 1000 }),
 
+			// Мороженка "Клубничное настроение"
+			generateProductItem({ productId: ice4.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice4.id, sugar: 1, size: 500 }),
+			generateProductItem({ productId: ice4.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: ice4.id, sugar: 0, size: 250 }),
+			generateProductItem({ productId: ice4.id, sugar: 0, size: 500 }),
+			generateProductItem({ productId: ice4.id, sugar: 0, size: 1000 }),
+
+			// Мороженка "Морозная свежесть"
+			generateProductItem({ productId: ice5.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice5.id, sugar: 1, size: 500 }),
+			generateProductItem({ productId: ice5.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: ice5.id, sugar: 0, size: 250 }),
+			generateProductItem({ productId: ice5.id, sugar: 0, size: 500 }),
+			generateProductItem({ productId: ice5.id, sugar: 0, size: 1000 }),
+
+			// Мороженка "Тропический бриз"
+			generateProductItem({ productId: ice6.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice6.id, sugar: 1, size: 500 }),
+			generateProductItem({ productId: ice6.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: ice6.id, sugar: 0, size: 250 }),
+			generateProductItem({ productId: ice6.id, sugar: 0, size: 500 }),
+			generateProductItem({ productId: ice6.id, sugar: 0, size: 1000 }),
+
 
 			// Торт "Love"
-			generateProductItem({ productId: cake1.id, sugar: 1, size: 2500 }),
-			generateProductItem({ productId: cake1.id, sugar: 0, size: 2500 }),
-			generateProductItem({ productId: cake1.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake1.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: cake1.id, sugar: 0, size: 1000 }),
+			generateProductItem({ productId: cake1.id, sugar: 0, size: 1000 }),
 
 			// Торт "Мишка"
-			generateProductItem({ productId: cake2.id, sugar: 1, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: 1, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: 1, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: 0, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: 0, size: 2500 }),
-			generateProductItem({ productId: cake2.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake2.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: cake2.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: cake2.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: cake2.id, sugar: 0, size: 1000 }),
+			generateProductItem({ productId: cake2.id, sugar: 0, size: 1000 }),
+			generateProductItem({ productId: cake2.id, sugar: 0, size: 1000 }),
 
 			// Торт "Сыр"
-			generateProductItem({ productId: cake3.id, sugar: 1, size: 2500 }),
-			generateProductItem({ productId: cake3.id, sugar: 0, size: 2500 }),
-			generateProductItem({ productId: cake3.id, sugar: 0, size: 2500 }),
+			generateProductItem({ productId: cake3.id, sugar: 1, size: 1000 }),
+			generateProductItem({ productId: cake3.id, sugar: 0, size: 1000 }),
+			generateProductItem({ productId: cake3.id, sugar: 0, size: 1000 }),
 
-			// Торт "Праздничный"
-			generateProductItem({ productId: cake4.id, sugar: 1, size: 2500 }),
-			generateProductItem({ productId: cake4.id, sugar: 0, size: 2500 }),
-			generateProductItem({ productId: cake4.id, sugar: 0, size: 2500 }),
 
 			// Остальные продукты
 			generateProductItem({ productId: 1 }),

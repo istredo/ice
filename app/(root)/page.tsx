@@ -24,7 +24,6 @@ export default async function Home({ searchParams }: { searchParams: GetSearchPa
 					{/* Товары */}
 					<div className="flex-1">
 						<div className="flex flex-col gap-16">
-							Список товаров
 							{
 								categories.map((category) => (
 									category.products.length > 0 && <ProductsList
