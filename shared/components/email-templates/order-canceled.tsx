@@ -3,24 +3,36 @@ import React from 'react';
 
 interface Props {
 	orderId: number;
+	price: number;
+	discount: number;
 	items: CartItemDTO[];
 }
 
-export const OrderCanceledTemplate: React.FC<Props> = ({ orderId, items }) => (
-	<div>
-		<h1>Проблема с оплатой заказа</h1>
+export const OrderCanceledTemplate: React.FC<Props> = ({ orderId, price, discount, items }) => {
+	let itemsHtml = '';
+	items.forEach((item) => {
+		const name = item.productItem.product.name;
+		const price = item.productItem.price;
+		const quantity = item.quantity;
+		const total = price * quantity;
+		itemsHtml += `<li>${name} | ${price} ₽ x ${quantity} шт. = ${total} ₽</li>`;
+	});
 
-		<p>Ваш заказ #{orderId} не был оплачен. Список товаров:</p>
+	return (
+		`<div>
+			<h1>Проблема с оплатой заказа</h1>
+	
+			<p>Ваш заказ №${orderId} не был оплачен. Список товаров:</p>
+	
+			<hr />
+	
+			<ul>
+				${itemsHtml}
+			</ul>
+			<p>Размер Вашей скидки составил: ${discount} ₽</p>
+			<p>Итого: ${price} ₽</p>
+		</div>`
+	);
 
-		<hr />
 
-		<ul>
-			{items.map((item) => (
-				<li key={item.id}>
-					{item.productItem.product.name} | {item.productItem.price} ₽ x {item.quantity} шт. ={' '}
-					{item.productItem.price * item.quantity} ₽
-				</li>
-			))}
-		</ul>
-	</div>
-);
+}

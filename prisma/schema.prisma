@@ -120,6 +120,8 @@ model Order {
    token String
 
    totalAmount Int
+   finalPrice  Int
+   discount    Int
    status      OrderStatus @default(PENDING)
    paymentId   String?
 

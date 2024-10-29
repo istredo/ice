@@ -1,13 +1,14 @@
 'use server';
+import { OrderStatus, Prisma } from "@prisma/client";
+import { cookies } from "next/headers";
 
 import { prisma } from "@/prisma/prisma-client";
 import { PayOrderTemplate, VerificationUserTemplate } from "@/shared/components";
 import { CheckoutFormValues } from "@/shared/const/checkout-form-schema";
 import { createPayment, sendEmail } from "@/shared/lib";
 import { getUserSession } from "@/shared/lib/get-user-session";
-import { OrderStatus, Prisma } from "@prisma/client";
+import { sendMail } from "@/shared/lib/mailService";
 import { hashSync } from "bcrypt";
-import { cookies } from "next/headers";
 
 export async function createOrder(data: CheckoutFormValues) {
 	try {
@@ -50,6 +51,8 @@ export async function createOrder(data: CheckoutFormValues) {
 				address: data.address,
 				comment: data.comment,
 				totalAmount: userCart.totalAmount,
+				discount: Math.floor(userCart.totalAmount * 0.1),
+				finalPrice: (userCart.totalAmount / 100 * 90) + 500,
 				status: OrderStatus.PENDING,
 				items: JSON.stringify(userCart.items),
 			},
@@ -69,9 +72,9 @@ export async function createOrder(data: CheckoutFormValues) {
 				cartId: userCart.id,
 			},
 		});
-
+		console.log(order.totalAmount)
 		const paymentData = await createPayment({
-			amount: order.totalAmount,
+			amount: order.finalPrice,
 			orderId: order.id,
 			description: 'Оплата заказа #' + order.id,
 		});
@@ -90,12 +93,13 @@ export async function createOrder(data: CheckoutFormValues) {
 		});
 		const paymentUrl = paymentData.confirmation.confirmation_url;
 
-		await sendEmail(data.email, `Заказ No${order.id} ожидает оплаты `,
+		await sendMail(data.email, `Заказ No ${order.id} ожидает оплаты `,
 			PayOrderTemplate({
 				orderId: order.id,
-				totalAmount: order.totalAmount,
+				price: order.finalPrice,
 				paymentUrl,
-			}),);
+			})
+			,);
 		return paymentUrl;
 
 

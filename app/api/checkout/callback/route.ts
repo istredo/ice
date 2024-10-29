@@ -4,8 +4,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { PaymentCallbackData } from "@/@types/yookassa";
 import { prisma } from "@/prisma/prisma-client";
 import { OrderCanceledTemplate, OrderSuccessTemplate } from "@/shared/components";
-import { sendEmail } from "@/shared/lib";
 import { CartItemDTO } from "@/shared/services/dto/cart.dto";
+import { sendMail } from "@/shared/lib/mailService";
 
 
 export async function POST(req: NextRequest) {
@@ -36,24 +36,25 @@ export async function POST(req: NextRequest) {
 		const items = JSON.parse(order?.items as string) as CartItemDTO[];
 
 		if (isSucceeded) {
-			await sendEmail(
+			await sendMail(
 				order.email,
 				'Ice Shop / Ваш заказ успешно оформлен 🎉',
-				OrderSuccessTemplate({ orderId: order.id, items }),
+				OrderSuccessTemplate({ orderId: order.id, price: order.finalPrice, discount: order.discount, items }),
 			);
+			return NextResponse.json({ message: "Payment succeeded" });
 		} else {
-			await sendEmail(
+			await sendMail(
 				order.email,
 				'Ice Shop / Проблема с оплатой заказа',
-				OrderCanceledTemplate({ orderId: order.id, items }),
+				OrderCanceledTemplate({ orderId: order.id, price: order.finalPrice, discount: order.discount, items }),
 			);
+			return NextResponse.json({ message: 'Payment failed' });
 		}
 	} catch (error) {
 		console.log('[Checkout Callback] Error:', error);
 		return NextResponse.json({ error: 'Server error' });
 	}
 }
-
 
 
 

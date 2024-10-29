@@ -32,7 +32,7 @@ export const useFilters = (): ReturnProps => {
 	const searchParams = useSearchParams()
 	const [selectIngredients, { toggle: toggleIngredients }] = useSet(new Set<string>(searchParams.get('ingredients')?.split(',')))
 	const [selectSize, { toggle: toggleSize }] = useSet(new Set<string>(searchParams.get('size')?.split(',') || []))
-	const [selectSugar, { toggle: toggleSugar }] = useSet(new Set<string>(searchParams.get('sugar')?.split(',') || ['sugar=1']))
+	const [selectSugar, { toggle: toggleSugar }] = useSet(new Set<string>(searchParams.get('sugar')?.split(',') || ['']))
 	const [prices, setPrices] = React.useState<Price>({
 		priceFrom: Number(searchParams.get('priceFrom')) || undefined,
 		priceTo: Number(searchParams.get('priceTo')) || undefined
