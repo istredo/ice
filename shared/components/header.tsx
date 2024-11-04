@@ -40,26 +40,26 @@ export const Header: React.FC<Props> = ({ className, hasSearch = true, hasCart =
 	}, []);
 	return (
 		<header className={cn(' border-b', className)}>
-			<Container className="flex items-center justify-between py-8">
+			<Container className="flex items-center justify-between py-8 max-md:flex-wrap">
 
 				<div className="flex items-center gap-4">
-					<Image src='/pizza.ico' alt='Logo' width={35} height={35} />
+					<Image src='/pizza.ico' alt='Logo' width={35} height={35} className="max-md:hidden" />
 					<Link href='/'>
-						<h1 className="text-2xl uppercase font-black">Морозко</h1>
-						<p className="text-sm text-gray-400 leading-3">Невероятно вкусно!</p>
+						<h1 className="text-2xl uppercase font-black max-md:text-xl">Морозко</h1>
+						<p className="text-sm text-gray-400 leading-3 max-md:xs">Невероятно вкусно!</p>
 					</Link>
 				</div>
 
-				<div className="mx-10 flex-1">
+				<div className="mx-10 flex-1 max-md:mx-2">
 					{
 						hasSearch &&
-						<div className="mx-10 flex-1">
+						<div className="mx-10 flex-1 max-md:mx-2">
 							<SearchInput />
 						</div>
 					}
 				</div>
 
-				<div className="flex gap-4">
+				<div className="flex gap-4 max-md:mt-2 max-md:justify-around max-md:w-full">
 
 					<AuthModal open={openAuthModal} onClose={() => setOpenAuthModal(false)} />
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { Title } from './title';
-import { Button } from '../ui/button';
+import { Title } from '../../title';
+import { Button } from '../../../ui/button';
 import { cn } from '@/shared/lib/utils';
 
 interface Props {
@@ -21,7 +21,7 @@ export const ProductForm: React.FC<Props> = ({
 	price,
 	loading
 }) => {
-	const textDetaills = 'loremipsum'
+	const textDetaills = 'Описание продукта'
 	return (
 		<div className={cn(className, 'flex flex-1')}>
 			<div className="flex items-center justify-center flex-1 relative w-full">

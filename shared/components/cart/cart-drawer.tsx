@@ -33,7 +33,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 	return (
 		<Sheet>
 			<SheetTrigger asChild>{children}</SheetTrigger>
-			<SheetContent className="flex flex-col justify-between pb-0 bg-[#eef4f0]">
+			<SheetContent className="flex flex-col justify-between pb-0 bg-[#eef4f0] max-md:pb-14">
 				{totalAmount > 0 && (
 					<SheetHeader>
 						<SheetTitle>
@@ -83,7 +83,7 @@ export const CartDrawer: React.FC<React.PropsWithChildren<Props>> = ({ children,
 						))}
 					</div>
 					<SheetFooter className="-mx-6 bg-white p-8">
-						<div className="w-full">
+						<div className="w-full max-md:w-5/6">
 							<div className="flex mb-4">
 								<span className="flex flex-1 text-lg text-neutral-500">
 									Итого
