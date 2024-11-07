@@ -59,7 +59,7 @@ async function up() {
 	const ice1 = await prisma.product.create({
 		data: {
 			name: 'Сливочный пломбир',
-			imageUrl: '/assets/ice_vanila.png',
+			imageUrl: '/assets/ice_vanila.webp',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(0, 4),
@@ -69,7 +69,7 @@ async function up() {
 	const ice2 = await prisma.product.create({
 		data: {
 			name: 'Черничное удовольствие',
-			imageUrl: '/assets/ice_black.png',
+			imageUrl: '/assets/ice_black.webp',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(3, 10),
@@ -79,7 +79,7 @@ async function up() {
 	const ice3 = await prisma.product.create({
 		data: {
 			name: 'Шоколадное наслаждение',
-			imageUrl: '/assets/ice_choco.png',
+			imageUrl: '/assets/ice_choco.webp',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(4, 6),
@@ -89,7 +89,7 @@ async function up() {
 	const ice4 = await prisma.product.create({
 		data: {
 			name: 'Клубничное настроение',
-			imageUrl: '/assets/ice_strawberry.png',
+			imageUrl: '/assets/ice_strawberry.webp',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(0, 8),
@@ -99,7 +99,7 @@ async function up() {
 	const ice5 = await prisma.product.create({
 		data: {
 			name: 'Морозная свежесть',
-			imageUrl: '/assets/ice_mint.png',
+			imageUrl: '/assets/ice_mint.webp',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(3, 8),
@@ -109,7 +109,7 @@ async function up() {
 	const ice6 = await prisma.product.create({
 		data: {
 			name: 'Тропический бриз',
-			imageUrl: '/assets/ice_orange.png',
+			imageUrl: '/assets/ice_orange.webp',
 			categoryId: 1,
 			ingredients: {
 				connect: _ingredients.slice(0, 6),
@@ -119,7 +119,7 @@ async function up() {
 	const cake1 = await prisma.product.create({
 		data: {
 			name: 'Love',
-			imageUrl: '/assets/cake_strawberry.png',
+			imageUrl: '/assets/cake_strawberry.webp',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(2, 5),
@@ -129,7 +129,7 @@ async function up() {
 	const cake2 = await prisma.product.create({
 		data: {
 			name: 'Шоколадный торт',
-			imageUrl: '/assets/cake_choco.png',
+			imageUrl: '/assets/cake_choco.webp',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(3, 8),
@@ -139,7 +139,7 @@ async function up() {
 	const cake3 = await prisma.product.create({
 		data: {
 			name: 'Классика',
-			imageUrl: '/assets/cake.png',
+			imageUrl: '/assets/cake.webp',
 			categoryId: 2,
 			ingredients: {
 				connect: _ingredients.slice(1, 4),

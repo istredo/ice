@@ -62,15 +62,9 @@ export const IceForm: React.FC<Props> = ({
 		<>
 			{
 				isMedia1024 ?
-					<div className={cn(className, `flex  flex-col w-[${mobileWidth}px]`)}>
-						<div className="flex flex-row  justify-around">
+					<div className={cn(className, `flex  flex-col w-[${mobileWidth}px] h-[550px] mr-6`)}>
 
-							<Title text={name} size="xs" className="font-extrabold mb-1" />
-
-							<p className="text-gray-400">{textDetaills}</p>
-
-
-						</div>
+						<Title text={name} size="xs" className="font-extrabold mb-1 text-center" />
 
 						<ProductImage imageUrl={imageUrl} size={size} isMedia={isMedia1024} />
 						<div className=" bg-[#f7f6f5] p-1 h-[450px] flex flex-col">
@@ -84,7 +78,7 @@ export const IceForm: React.FC<Props> = ({
 								className="h-[55px] px-10 text-base rounded-[18px]  mt-5">
 								Добавить в корзину за {totalPrice} ₽
 							</Button>
-							<div className="bg-gray-50 p-5 rounded-md h-[420px] overflow-auto scrollbar mt-2 w-[350px]">
+							<div className="bg-gray-50 p-5 rounded-md h-[250px] overflow-auto scrollbar mt-2 w-[350px]">
 								<div className="grid grid-cols-2 gap-3">
 									{
 										ingredients.map((ingredient) => (

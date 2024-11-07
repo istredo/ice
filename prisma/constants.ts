@@ -18,61 +18,61 @@ export const _ingredients = [
 		name: 'Пралине',
 		price: 179,
 		imageUrl:
-			'/assets/praline.png',
+			'/assets/praline.webp',
 	},
 	{
 		name: 'Фисташка',
 		price: 79,
 		imageUrl:
-			'/assets/pistachio.png',
+			'/assets/pistachio.webp',
 	},
 	{
 		name: 'Банан',
 		price: 79,
 		imageUrl:
-			'/assets/banana.png',
+			'/assets/banana.webp',
 	},
 	{
 		name: 'Киви',
 		price: 59,
 		imageUrl:
-			'/assets/qiwi.png',
+			'/assets/qiwi.webp',
 	},
 	{
 		name: 'Красный виноград',
 		price: 59,
 		imageUrl:
-			'/assets/r_grape.png',
+			'/assets/r_grape.webp',
 	},
 	{
 		name: 'Сочные ананасы',
 		price: 59,
 		imageUrl:
-			'/assets/pineapple.png',
+			'/assets/pineapple.webp',
 	},
 	{
 		name: 'Мята',
 		price: 39,
 		imageUrl:
-			'/assets/mint.png',
+			'/assets/mint.webp',
 	},
 	{
 		name: 'Шоколад',
 		price: 59,
 		imageUrl:
-			'/assets/choco.png',
+			'/assets/choco.webp',
 	},
 	{
 		name: 'Манго',
 		price: 79,
 		imageUrl:
-			'/assets/mango.png',
+			'/assets/mango.webp',
 	},
 	{
 		name: 'Яблоко',
 		price: 79,
 		imageUrl:
-			'/assets/apple.png',
+			'/assets/apple.webp',
 	},
 ].map((obj, index) => ({ id: index + 1, ...obj }));
 
