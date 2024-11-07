@@ -2,7 +2,7 @@
 
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useCart } from '@/shared/hooks';
+import { useCart, useMediaQuery } from '@/shared/hooks';
 import React from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { checkoutFormSchema, CheckoutFormValues } from '@/shared/const/checkout-form-schema';
@@ -77,33 +77,60 @@ export default function CheckoutPage() {
 		const updateQuantity = type === 'plus' ? quantity + 1 : quantity - 1
 		updateItemQuantity(id, updateQuantity)
 	}
+	const isMedia1024 = useMediaQuery(1024)
 	return (
-		<Container className="mt-10">
-			<Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />
-			<FormProvider {...form}>
-				<form onSubmit={form.handleSubmit(onSubmit)}>
-					<div className="flex gap-10">
-						{/* Левая часть */}
-						<div className="flex flex-col gap-10  flex-1 mb-20">
-							<CheckoutCartForm
-								onClickCountButton={onClickCountButton}
-								removeCartItem={removeCartItem}
-								items={items}
-								loading={loading}
-							/>
+		<>
+			{
+				isMedia1024 ?
+					<Container className="mt-2 pr-10">
+						<Title text="Оформление заказа" className="font-extrabold mb-2 text-[36px]" />
+						<FormProvider {...form}>
+							<form onSubmit={form.handleSubmit(onSubmit)}>
+								<div className="flex flex-col gap-5  flex-1 mb-20">
+									<CheckoutCartForm
+										onClickCountButton={onClickCountButton}
+										removeCartItem={removeCartItem}
+										items={items}
+										loading={loading}
+										isMedia={isMedia1024}
+									/>
+									<CheckoutPersonalForm className={loading ? "opacity-40 pointer-events-none" : ''} isMedia={isMedia1024} />
+									<CheckoutAddressForm className={loading ? "opacity-40 pointer-events-none" : ''} />
+								</div>
+								<CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
+							</form>
+						</FormProvider>
+					</Container >
+					:
+					<Container className="mt-10">
+						<Title text="Оформление заказа" className="font-extrabold mb-8 text-[36px]" />
+						<FormProvider {...form}>
+							<form onSubmit={form.handleSubmit(onSubmit)}>
+								<div className="flex gap-10">
+									{/* Левая часть */}
+									<div className="flex flex-col gap-10  flex-1 mb-20">
+										<CheckoutCartForm
+											onClickCountButton={onClickCountButton}
+											removeCartItem={removeCartItem}
+											items={items}
+											loading={loading}
+										/>
 
-							<CheckoutPersonalForm className={loading ? "opacity-40 pointer-events-none" : ''} />
+										<CheckoutPersonalForm className={loading ? "opacity-40 pointer-events-none" : ''} />
 
-							<CheckoutAddressForm className={loading ? "opacity-40 pointer-events-none" : ''} />
-						</div>
+										<CheckoutAddressForm className={loading ? "opacity-40 pointer-events-none" : ''} />
+									</div>
 
-						{/* Правая часть */}
-						<div className="w-[450px]">
-							<CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
-						</div >
-					</div>
-				</form>
-			</FormProvider>
-		</Container >
+									{/* Правая часть */}
+									<div className="w-[450px]">
+										<CheckoutSidebar totalAmount={totalAmount} loading={loading || submitting} />
+									</div >
+								</div>
+							</form>
+						</FormProvider>
+					</Container >
+			}
+		</>
 	);
 }
+

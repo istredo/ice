@@ -11,6 +11,7 @@ interface Props {
 	removeCartItem: (id: number) => void;
 	loading?: boolean;
 	className?: string;
+	isMedia?: boolean;
 }
 
 export const CheckoutCartForm: React.FC<Props> = ({
@@ -19,6 +20,7 @@ export const CheckoutCartForm: React.FC<Props> = ({
 	removeCartItem,
 	loading,
 	className,
+	isMedia,
 }) => {
 	return (
 		<WhiteBlock title="1. Корзина" className={className}>
@@ -40,7 +42,8 @@ export const CheckoutCartForm: React.FC<Props> = ({
 							quantity={item.quantity}
 							disabled={item.disabled}
 							onClickCountButton={(type) => onClickCountButton(item.id, item.quantity, type)}
-							onClickRemove={() => removeCartItem(item.id)} />
+							onClickRemove={() => removeCartItem(item.id)}
+							isMedia={isMedia} />
 					))}
 			</div>
 		</WhiteBlock>
