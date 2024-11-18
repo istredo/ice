@@ -14,7 +14,7 @@ const generateProductItem = ({
 }: {
 	productId: number;
 	sugar?: number;
-	size?: 250 | 500 | 1000 | 1000;
+	size?: 250 | 500 | 1000;
 }) => {
 	return {
 		productId,
@@ -151,6 +151,7 @@ async function up() {
 		data: [
 			// Мороженка "Сливочный пломбир"
 			generateProductItem({ productId: ice1.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice1.id, sugar: 1, size: 500 }),
 			generateProductItem({ productId: ice1.id, sugar: 0, size: 500 }),
 			generateProductItem({ productId: ice1.id, sugar: 0, size: 1000 }),
 
@@ -164,6 +165,7 @@ async function up() {
 
 			// Мороженка "Шоколадное наслаждение"
 			generateProductItem({ productId: ice3.id, sugar: 1, size: 250 }),
+			generateProductItem({ productId: ice3.id, sugar: 1, size: 1000 }),
 			generateProductItem({ productId: ice3.id, sugar: 0, size: 500 }),
 			generateProductItem({ productId: ice3.id, sugar: 0, size: 1000 }),
 
@@ -195,19 +197,13 @@ async function up() {
 			// Торт "Love"
 			generateProductItem({ productId: cake1.id, sugar: 1, size: 1000 }),
 			generateProductItem({ productId: cake1.id, sugar: 0, size: 1000 }),
-			generateProductItem({ productId: cake1.id, sugar: 0, size: 1000 }),
 
 			// Торт "Мишка"
 			generateProductItem({ productId: cake2.id, sugar: 1, size: 1000 }),
-			generateProductItem({ productId: cake2.id, sugar: 1, size: 1000 }),
-			generateProductItem({ productId: cake2.id, sugar: 1, size: 1000 }),
-			generateProductItem({ productId: cake2.id, sugar: 0, size: 1000 }),
-			generateProductItem({ productId: cake2.id, sugar: 0, size: 1000 }),
 			generateProductItem({ productId: cake2.id, sugar: 0, size: 1000 }),
 
 			// Торт "Сыр"
 			generateProductItem({ productId: cake3.id, sugar: 1, size: 1000 }),
-			generateProductItem({ productId: cake3.id, sugar: 0, size: 1000 }),
 			generateProductItem({ productId: cake3.id, sugar: 0, size: 1000 }),
 
 
@@ -228,7 +224,7 @@ async function up() {
 		data: [
 			{
 				userId: 1,
-				totalAmount: 0,
+				totalAmount: 500,
 				token: '1234',
 			},
 			{
